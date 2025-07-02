@@ -27,4 +27,4 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://gitlab.hexfellow.com/Jecjune/hex_lift_python_lib.git"
+Homepage = "https://github.com/hexfellow/hex_lift_python_lib"

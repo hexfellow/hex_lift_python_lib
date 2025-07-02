@@ -62,13 +62,13 @@ All lift control interfaces are provided through the `LiftAPI` class:
 from hex_lift import PublicAPI as LiftAPI
 
 # Initialize the API
-api = LiftAPI(ws_url="ws://your_lift_ip:8439", control_hz=200, control_mode="speed")
+api = LiftAPI(ws_url = "ws://172.18.20.80:8439", control_hz = 100)
 
 # Get lift interface
 lift = api.lift
 
 # Control the lift
-lift.set_target_lift_speed(x_speed, y_speed, rotation_speed)
+lift.set_target_pos(pos)
 ```
 
 ## Architecture
@@ -82,9 +82,9 @@ The library consists of three main modules:
 ### 2. lift  
 - **Lift Data Manager**: Continuously updates lift data in a loop
 - Provides interfaces for:
-  - Obtaining chassis status
+  - Obtaining lift status
   - Controlling lift movement
-  - Reading motor data (velocity, torque, position)
+  - Reading motor data
 
 ### 3. utils
 - **General Tools**: Parameter management and common utility functions
@@ -94,11 +94,9 @@ The library consists of three main modules:
 
 See the `tests/` directory for example usage:
 - `main.py` - Basic lift control example
-- `main_pygame.py` - Joystick control example using pygame
 
 ## Requirements
 
 - numpy>=1.17.4,<=1.26.4
 - protobuf
 - websockets
-- pygame (for joystick control examples)

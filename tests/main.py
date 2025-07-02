@@ -53,7 +53,7 @@ def main():
 
                 # set target pos
                 try:
-                    lift_interface.set_target_pos(-0.6)
+                    lift_interface.set_target_pos(-0.3)
                 except Exception as e:
                     print("set_target_pos error: ", e)
                 
