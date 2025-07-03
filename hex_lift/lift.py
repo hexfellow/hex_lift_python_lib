@@ -61,7 +61,7 @@ class Lift:
     def set_target_pos(self, target: float):
         '''
         set target position.
-        target           unit: m
+        target           unit: m  (range is [0, max_pos] or [max_pos, 0])
         '''
         if self.lift_type == RobotType.RtLotaLinearLift:
             if self.__max_pos < 0.0:
@@ -76,7 +76,7 @@ class Lift:
     def set_max_speed(self, max_speed: int):
         """
         Use simple control mode to set Lift speed.
-        max_speed: default is 75000
+        max_speed: default is 75000, unit is pulse/s
         """
         if max_speed < 0:
             raise ValueError("set_max_speed: max_speed must be greater than 0")
@@ -90,17 +90,19 @@ class Lift:
                 "set_max_speed not implemented for lift_type: ",
                 self.lift_type)
 
-    def set_brake(self, brake: bool):
+    def set_brake(self):
         """
-        Set brake, it will activate motor brake.
+        Set brake, it will brake motor at once.
+        You can exit LsBrake mode by sending target_pos command or calibrate command.
+        You don't have to keep sending brake command, but it is recommended to do so.
         """
         if self.lift_type == RobotType.RtLotaLinearLift:
             with self.__command_lock:
-                self._target_brake = brake
+                self._target_brake = True
 
     def init_lift(self):
         """
-        Set init flag, it will activate motor init.
+        Set init flag, it will activate motor calibrate at once.
         """
         with self.__command_lock:
             self._init_flag = True
@@ -163,31 +165,31 @@ class Lift:
             return deepcopy(self._target_max_speed)
 
     def get_max_pos(self) -> float:
-        """ get max position, unit is m """
+        """ get lift max position, unit is m, range is [0, max_pos] or [max_pos, 0] """
         with self.__data_lock:
             return deepcopy(self.__max_pos)
 
     def get_current_pos(self) -> float:
-        """ get current position, unit is m """
+        """ get lift current position, unit is m """
         with self.__data_lock:
             self.__has_new = False
             return deepcopy(self.__current_pos)
 
     def get_current_max_speed(self) -> float:
-        """ get current speed, unit is pulse/s """
+        """ get lift max speed setting, unit is pulse/s """
         with self.__data_lock:
             self.__has_new = False
             return deepcopy(self.__current_max_speed)
 
     def get_error(self):
         '''
-        Get motor real motor error.
+        Get lift error code.
         '''
         with self.__data_lock:
             return deepcopy(self.__err)
 
     def get_custom_button_pressed(self) -> Optional[bool]:
-        """ get custom button pressed """
+        """ get custom button pressed status """
         with self.__data_lock:
             return deepcopy(self.__custom_button_pressed)
 

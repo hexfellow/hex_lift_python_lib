@@ -28,6 +28,11 @@ TIME_OUT = 1.0
 class PublicAPI:
 
     def __init__(self, ws_url: str, control_hz: int):
+        '''
+        @brief: Initialize the PublicAPI class.
+        @param ws_url: The WebSocket URL to connect to.
+        @param control_hz: The control frequency in Hz.
+        '''
         self.__websocket = None
         try:
             self.__ws_url: str = is_valid_ws_url(ws_url)

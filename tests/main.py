@@ -16,6 +16,7 @@ def main():
         print("Lift is not initialized.")
         exit(0)
     else:
+        # sending calibrated command to lift
         lift_interface.init_lift()
 
     try:
@@ -65,7 +66,7 @@ def main():
                 
                 # # set brake
                 # try:
-                #     lift_interface.set_brake(False)
+                #     lift_interface.set_brake()
                 # except Exception as e:
                 #     print("set_brake error: ", e)
 

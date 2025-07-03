@@ -6,9 +6,15 @@ A Python library for controlling hex lift through a WebSocket-based API.
 
 This library provides a simple interface for communicating with and controlling hex lifts. It uses Protocol Buffers for message serialization and WebSocket for real-time communication.
 
+## Clone
+```
+git clone https://github.com/hexfellow/hex_lift_python_lib.git
+git submodule update --init
+```
+
 ## Prerequisites
 
-- Python 3.10 or higher
+- **Python 3.10 or higher**
 - Anaconda Distribution (recommended for beginners) - includes Python, NumPy, and commonly used scientific computing packages
 
 ## Installation
@@ -30,7 +36,12 @@ If you prefer to run the library without installing it in your Python environmen
    sys.path.insert(1, '<your project path>/hex_lift_python_lib/hex_lift/generated')
    ```
 
-3. **Run your test script:**
+3. **Install dependencies**
+   ```
+   pip install websockets
+   ```
+
+4. **Run your test script:**
    ```bash
    python3 tests/<your_script>.py
    ```
