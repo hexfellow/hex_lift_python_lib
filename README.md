@@ -14,7 +14,7 @@ git submodule update --init
 
 ## Prerequisites
 
-- **Python 3.10 or higher**
+- **Python 3.8.10 or higher**
 - Anaconda Distribution (recommended for beginners) - includes Python, NumPy, and commonly used scientific computing packages
 
 ## Installation

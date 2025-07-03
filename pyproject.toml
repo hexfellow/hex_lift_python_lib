@@ -10,7 +10,7 @@ dependencies = [
   "protobuf>=5.29.4",
   "websockets>=13.1",
 ]
-requires-python = ">=3.10.12"
+requires-python = ">=3.8.10"
 authors = [
   { name="jecjune", email="jecjune@qq.com" },
 ]

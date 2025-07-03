@@ -49,7 +49,7 @@ class PublicAPI:
         self.__last_warning_time = time.perf_counter()
 
         # init api
-        self.__shutdown_event = asyncio.Event()
+        self.__shutdown_event = None  # Will be created in the correct loop
         self.__loop_thread = threading.Thread(target=self.__loop_start,
                                               daemon=True)
         self.__api_data = []
@@ -258,9 +258,13 @@ class PublicAPI:
     async def __async_close(self):
         if self.__websocket:
             await self.__websocket.close()
-        self.__shutdown_event.set()
+        if self.__shutdown_event:
+            self.__shutdown_event.set()
 
     async def __main_loop(self):
+        # Create shutdown event in the correct event loop
+        self.__shutdown_event = asyncio.Event()
+        
         log_common("HexLift Api started.")
         await self.__connect_ws()
         await self.__capture_first_frame()
