@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "hex_lift"
 version = "0.0.1"
 dependencies = [
-  "numpy>=1.17.4,<=1.26.4",
+  "numpy>=1.17.4",
   "protobuf>=5.29.4",
   "websockets>=13.1",
 ]
